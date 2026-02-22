@@ -1,5 +1,6 @@
 import cv2
 import sys
+import time
 
 static = cv2.VideoCapture("static.mp4")
 Audrey = cv2.VideoCapture("Audrey.mp4")
@@ -19,7 +20,7 @@ def static_loop(cap):
         cv2.imshow("Video", frame)
 
         # Press Q to quit
-        if cv2.waitKey(25) & 0xFF == ord("q"):
+        if ord("a") <= cv2.waitKey(25) & 0xFF <= ord("z"):
             return
 
 
@@ -28,12 +29,13 @@ def video_play(cap):
         ret, frame = cap.read()
 
         if not ret:
+            time.sleep(1)
             break  # No more frames → end of video
 
         cv2.imshow("Video", frame)
 
         # Press Q to quit
-        if cv2.waitKey(25) & 0xFF == ord("q"):
+        if ord("a") <= cv2.waitKey(25) & 0xFF <= ord("z"):
             return
     static_loop(static)
 
