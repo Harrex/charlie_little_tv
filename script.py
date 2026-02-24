@@ -15,9 +15,11 @@ cv2.setWindowProperty("Video", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 def tv_static(cap):
     while True:
         ret, frame = cap.read()
+        print()
 
         if not ret:
             cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+            continue
 
         cv2.imshow("Video", frame)
 
