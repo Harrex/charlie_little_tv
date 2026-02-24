@@ -6,11 +6,13 @@ static = cv2.VideoCapture("static.mp4")
 Audrey = cv2.VideoCapture("Audrey.mp4")
 Harinee = cv2.VideoCapture("Harinee.mp4")
 Heidi = cv2.VideoCapture("Heidi.mp4")
+wonka_bar = cv2.imread("wonkabar.jpg")
+mike_tv = cv2.imread("miketv.jpg")
 cv2.namedWindow("Video", cv2.WND_PROP_FULLSCREEN)
 cv2.setWindowProperty("Video", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
 
 
-def static_loop(cap):
+def tv_static(cap):
     while True:
         ret, frame = cap.read()
 
@@ -20,6 +22,13 @@ def static_loop(cap):
         cv2.imshow("Video", frame)
 
         # Press Q to quit
+        if ord("a") <= cv2.waitKey(25) & 0xFF <= ord("z"):
+            return
+
+
+def static_image(im):
+    cv2.imshow("Video", im)
+    while True:
         if ord("a") <= cv2.waitKey(25) & 0xFF <= ord("z"):
             return
 
@@ -37,7 +46,7 @@ def video_play(cap):
         # Press Q to quit
         if ord("a") <= cv2.waitKey(25) & 0xFF <= ord("z"):
             return
-    static_loop(static)
+    tv_static(static)
 
 
 if sys.argv[1] == "Audrey":
@@ -47,9 +56,11 @@ else:
 
 
 try:
-    static_loop(static)
+    tv_static(static)
     while True:
+        static_image(wonka_bar)
         video_play(a)
+        static_image(mike_tv)
         video_play(Heidi)
 except KeyboardInterrupt:
     print("Stopping...")
